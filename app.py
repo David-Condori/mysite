@@ -10,9 +10,14 @@ app.secret_key = 'tu_clave_secreta_muy_segura'  # Cambia esto en producción
 
 # Simulación de una base de datos de usuarios
 users = {
-    'admin': {'password': 'adminpass', 'role': 'admin'},
-    'driver': {'password': 'driverpass', 'role': 'driver'},
-    'editor': {'password': 'editorpass', 'role': 'editor'}
+    'manager1': {'password': 'manager1pass', 'role': 'admin'},
+    'manager2': {'password': 'manager2pass', 'role': 'admin'},
+    'driver1': {'password': 'driver1pass', 'role': 'driver'},
+    'driver2': {'password': 'driver2pass', 'role': 'driver'},
+    'driver3': {'password': 'driver3pass', 'role': 'driver'},
+    'seller1': {'password': 'seller1pass', 'role': 'seller'},
+    'seller2': {'password': 'seller2pass', 'role': 'seller'},
+    'seller3': {'password': 'seller3pass', 'role': 'seller'}
 }
 
 def login_required(f):
@@ -121,12 +126,21 @@ def ver_mapa():
             'telefono': '79876543',
             'foto': 'tienda_rosa.jpg',
             'ubicacion': [-17.4010, -66.1520]
+        },
+        {
+            'nombre': 'Hipermaxi Panamericana',
+            'contacto': '75666382',
+            'direccion': 'Cochabamba',
+            'telefono': '75666382',
+            'foto': 'hipermaxi.jpg',
+            'ubicacion': [-17.419395580330125, -66.15818321960522]
         }
     ]
 
     # Agregar marcadores para cada tienda
     for tienda in tiendas:
         foto_url = url_for('static', filename='fotos/tienda_barrio.jpg')
+        foto_url = url_for('static', filename='fotos/hipermaxi.jpg')
 
         popup_content = f"""<table border=1 class="table table-success table-striped">
             <tr><td colspan="2"><img src='{ foto_url }' width='250' height='200'></td></tr>
