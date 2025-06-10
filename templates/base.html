@@ -21,23 +21,17 @@
                     {% if 'username' in session %}
                         {% if session['role'] == 'admin' %}
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Gestión de Pedidos</a>
+                                <a class="nav-link" href="#">Gestión de Usuarios</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Gestión de Clientes</a>
+                                <a class="nav-link" href="#">Configuración del Sistema</a>
                             </li>
-                             <li class="nav-item">
-                                <a class="nav-link" href="#">Gestión de Vendedores</a>
-                            </li>
-                             <li class="nav-item">
-                                <a class="nav-link" href="#">Reportes</a>
-                            </li>
-                        {% elif session['role'] == 'seller' %}
+                        {% elif session['role'] == 'editor' %}
                             <li class="nav-item">
-                                <a class="nav-link" href="/ver_mapa">Recorrido</a>
+                                <a class="nav-link" href="#">Crear Contenido</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Pre venta</a>
+                                <a class="nav-link" href="#">Editar Contenido</a>
                             </li>
                         {% elif session['role'] == 'driver' %}
                             <li class="nav-item">
@@ -45,6 +39,16 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/pedido">Entrega Pedidos</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="reporteDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Reportes
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="productoDropdown">
+                                    <li><a class="dropdown-item" href="#">Reporte 1</a></li>
+                                    <li><a class="dropdown-item" href="#">Reporte 2</a></li>
+                                    <li><a class="dropdown-item" href="#">Reporte 3</a></li>
+                                </ul>
                             </li>
 
                         {% endif %}
