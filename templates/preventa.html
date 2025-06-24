@@ -4,29 +4,30 @@
 
 {% block content %}
 
+
     <div class="container">
 
         <div class="content">
             <!-- Sección de búsqueda -->
             <div class="search-section">
 
-                <form class="search-form" method="POST" action="/buscar_pedido">
-                    <input type="text" name="numero_pedido" class="search-input"
-                           placeholder="Ingrese número de pedido (ej: PED001)"
-                           value="{{ request.form.get('numero_pedido', '') }}" required>
-                    <button type="submit" class="btn btn-primary">Buscar Pedido</button>
+                <form class="search-form" method="POST" action="/buscar_cliente">
+                    <input type="text" name="codigo_cliente" class="search-input"
+                           placeholder="Ingrese Código Cliente (ej: CLI001)"
+                           value="{{ request.form.get('codigo_cliente', '') }}" required>
+                    <button type="submit" class="btn btn-primary">Buscar Cliente</button>
                 </form>
 
-                {% if pedidos_ejemplo %}
+                {% if clientes_ejemplo %}
                 <div style="margin-top: 20px; font-size: 0.9em; color: #6c757d;">
-                    <strong>Pedidos de ejemplo:</strong> PED001, PED002, PED003
+                    <strong>Clientes de ejemplo:</strong> CLI001, CLI002, CLI003
                 </div>
                 {% endif %}
             </div>
 
             <div class="loading" id="loading">
                 <div class="spinner"></div>
-                <p>Buscando pedido...</p>
+                <p>Buscando clientes...</p>
             </div>
 
             <!-- Mensajes de error/éxito -->
@@ -43,42 +44,42 @@
             {% endif %}
 
             <!-- Información del pedido y formulario -->
-            {% if pedido %}
+            {% if codigo %}
             <div class="pedido-info">
-                <h5><center>Pedido No.:{{ pedido.numero }} </center></h5>
+                <h5><center>Pedido No.:{{ codigo.codigo }} </center></h5>
 
                 <table  border=1>
                     <thead>
                         <tr>
                             <th>Cliente:</th>
-                            <th>{{ pedido.cliente }}</th>
+                            <th>{{ codigo.cliente }}</th>
                             <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                             <th>Teléfono:</th>
-                            <th>{{ pedido.telefono }}</th>
+                            <th>{{ codigo.telefono }}</th>
                             <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                             <th>Fecha:</th>
-                            <th>{{ pedido.fecha }}</th>
+                            <th>{{ codigo.fecha }}</th>
                         </tr>
                         <tr>
                             <th>Dirección:</th>
-                            <th>{{ pedido.direccion }}</th>
+                            <th>{{ codigo.direccion }}</th>
                             <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                             <th>Ciudad:</th>
-                            <th>{{ pedido.ciudad }}</th>
+                            <th>{{ codigo.ciudad }}</th>
                             <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                             <th>Estado:</th>
-                            <th>{{ pedido.estado }}</th>
+                            <th>{{ codigo.estado }}</th>
                         </tr>
                     </thead>
                 </table>
                         <!--div class="info-label">Total de Artículos</div>
-                        <div class="info-value">{{ pedido.articulos|length }} artículos</div--->
+                        <div class="info-value">{{ codigo.articulos|length }} artículos</div--->
             </div>
 
             <div class="form-section">
 
-                <form method="POST" action="/actualizar_pedido" id="pedidoForm">
-                    <input type="hidden" name="numero_pedido" value="{{ pedido.numero }}">
+                <form method="POST" action="/grabar_pedido" id="pedidoForm">
+                    <input type="hidden" name="numero_pedido" value="{{ codigo.numero }}">
 
                     <table class="articulos-table">
                         <thead>
@@ -91,7 +92,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for articulo in pedido.articulos %}
+                            {% for articulo in codigo.articulos %}
                             <tr>
                                 <td>{{ loop.index }}</td>
                                 <td>
@@ -124,7 +125,7 @@
 
                     <div class="form-actions">
                         <br>
-                        <button type="submit" class="btn btn-success">Entregar Pedido</button>
+                        <button type="submit" class="btn btn-success">Grabar Pedido</button>
                         <a href="/" class="btn btn-danger">Cancelar</a>
                     </div>
                 </form>
